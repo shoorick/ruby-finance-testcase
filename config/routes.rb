@@ -55,6 +55,6 @@ Rails.application.routes.draw do
   #   end
   
   get 'stocks'     => 'stocks#index'
-  get 'stocks/:id' => 'stocks#view'
+  get 'stocks/:id' => 'stocks#show'
   
 end
