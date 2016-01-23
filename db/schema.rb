@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123193906) do
+ActiveRecord::Schema.define(version: 20160123202222) do
 
   create_table "prices", force: :cascade do |t|
     t.integer  "stock_id"
@@ -23,5 +23,18 @@ ActiveRecord::Schema.define(version: 20160123193906) do
 
   add_index "prices", ["datetime"], name: "index_prices_on_datetime"
   add_index "prices", ["stock_id"], name: "index_prices_on_stock_id"
+
+  create_table "stocks", force: :cascade do |t|
+    t.string   "company"
+    t.string   "symbol"
+    t.float    "current_price"
+    t.datetime "last_synced_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "stocks", ["company"], name: "index_stocks_on_company"
+  add_index "stocks", ["last_synced_at"], name: "index_stocks_on_last_synced_at"
+  add_index "stocks", ["symbol"], name: "index_stocks_on_symbol"
 
 end
