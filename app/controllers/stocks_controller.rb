@@ -13,7 +13,7 @@ class StocksController < ApplicationController
   end
 
   def new
-    #code
+    @stock = Stock.new
   end
 
   def edit
@@ -21,7 +21,13 @@ class StocksController < ApplicationController
   end
 
   def create
-    render text: 'Stock created'
+    @stock = Stock.create(stock_params)
+    if @stock.errors.empty?
+      redirect_to stock_path(@stock)
+    else
+      render :new
+    end
+    
   end
 
   def update
@@ -37,5 +43,10 @@ class StocksController < ApplicationController
     end
     
   end
+  
+  private
+    def stock_params
+      params.require(:stock).permit(:company, :symbol, :current_price)
+    end
 
 end
