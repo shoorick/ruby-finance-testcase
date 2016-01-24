@@ -2,7 +2,6 @@ class StocksController < ApplicationController
 
   def index
     @stocks = Stock.all
-    render text: @stocks.map { |stock| "<a href=\"/stocks/#{stock.id}\">#{stock.company} (#{stock.symbol}) — #{stock.current_price}</a>" }.join('<br>')
   end
 
   def show
