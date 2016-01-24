@@ -29,7 +29,13 @@ class StocksController < ApplicationController
   end
 
   def destroy
-    #code
+    begin
+      @stock = Stock.find(params[:id]).destroy
+      redirect_to action: 'index'
+    rescue ActiveRecord::RecordNotFound
+      render text: 'No such stock', status: 404
+    end
+    
   end
 
 end
