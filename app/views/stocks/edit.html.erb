@@ -1,4 +1,19 @@
 <h1>Edit stock</h1>
+
+<% if @stock.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@stock.errors.count, 'error') %> prohibited
+      this stock from being saved:
+    </h2>
+    <ul>
+      <% @stock.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @stock  do |f| %>
   <label for="company">Company
     <%= f.text_field :company %></label>
