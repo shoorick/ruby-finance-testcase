@@ -24,4 +24,7 @@
 </p>
 
 <%= link_to 'Edit',   '/stocks/' + @stock.id.to_s + '/edit' %>
-<%= link_to 'Delete', @stock, method: 'DELETE' %>
+<%= link_to 'Delete',
+  @stock,
+  method: :delete,
+  data: { confirm: 'Really delete stock?' } %>
