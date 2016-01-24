@@ -44,11 +44,7 @@ class StocksController < ApplicationController
     end
     
     def find_stock
-      #begin
-        @stock = Stock.find(params[:id])
-      #rescue ActiveRecord::RecordNotFound
-      #  render text: 'No such stock', status: 404
-      #end
+      @stock = Stock.find(params[:id])
     end
 
 end
