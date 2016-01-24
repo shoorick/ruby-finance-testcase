@@ -1,15 +1,19 @@
 <h1><%= @stock.company %> (<%= @stock.symbol %>)</h1>
 <h2>Prices</h2>
 <p>Current: <%= @stock.current_price %></p>
-<p>Archive:</p>
-<ul>
-  <% @stock.prices.each do |price| %>
-    <li>
-      <%= price.datetime %>
-      <%= price.price %>
-    </li>
-  <% end %>
-</ul>
+<% if @stock.prices.length > 0 %>
+  <p>Archive:</p>
+  <ul>
+    <% @stock.prices.each do |price| %>
+      <li>
+        <%= price.datetime %>
+        <%= price.price %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No archive yet found</p>
+<% end %>
 
 <p>
   <% if @stock.last_synced_at.nil? %>

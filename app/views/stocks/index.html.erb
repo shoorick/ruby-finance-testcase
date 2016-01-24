@@ -1,9 +1,14 @@
-<h1>Stocks</h1>
-<ul>
-  <% @stocks.each do |stock| %>
-    <li>
-      <%= link_to "#{stock.company} (#{stock.symbol})", stock %>
-      — <%= stock.current_price %>
-    </li>
-  <% end %>
-</ul>
+<% if @stocks.length > 0 %>
+  <h1>Stocks</h1>
+  <ul>
+    <% @stocks.each do |stock| %>
+      <li>
+        <%= link_to "#{stock.company} (#{stock.symbol})", stock %>
+        — <%= stock.current_price %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h1>No stocks</h1>
+  <p>No stocks entered yet</p>
+<% end %>
