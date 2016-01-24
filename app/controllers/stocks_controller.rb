@@ -19,8 +19,10 @@ class StocksController < ApplicationController
   def create
     @stock = Stock.create(stock_params)
     if @stock.errors.empty?
+      flash[:success] = 'Successfully created'
       redirect_to stock_path(@stock)
     else
+      flash[:error] = 'Could not create'
       render :new
     end
   end
@@ -28,8 +30,10 @@ class StocksController < ApplicationController
   def update
     @stock.update_attributes(stock_params)
     if @stock.errors.empty?
+      flash[:success] = 'Successfully updated'
       redirect_to stock_path(@stock)
     else
+      flash[:error] = 'Could not update'
       render :edit
     end
   end
