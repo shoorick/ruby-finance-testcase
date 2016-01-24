@@ -1,0 +1,20 @@
+<h1><%= @stock.company %> (<%= @stock.symbol %>)</h1>
+<h2>Prices</h2>
+<p>Current: <%= @stock.current_price %></p>
+<p>Archive:</p>
+<ul>
+  <% @stock.prices.each do |price| %>
+    <li>
+      <%= price.datetime %>
+      <%= price.price %>
+    </li>
+  <% end %>
+</ul>
+
+<p>
+  <% if @stock.last_synced_at.nil? %>
+    Not synced yet
+  <% else %>
+    Last synced at <%= @stock.last_synced_at %>
+  <% end %>
+</p>
