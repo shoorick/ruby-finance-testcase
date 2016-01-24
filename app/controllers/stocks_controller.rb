@@ -5,12 +5,7 @@ class StocksController < ApplicationController
   end
 
   def show
-    @stock = Stock.find(params[:id].to_i)
-    #if @stock
-    #  render text: "<h1>#{@stock.company} (#{@stock.symbol})</h1>Current price: #{@stock.current_price}<br>Last synced at #{@stock.last_synced_at}"
-    #else
-    #  render text: 'Not found'
-    #end
+    @stock = Stock.find(params[:id])
   end
 
   def new
