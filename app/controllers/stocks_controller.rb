@@ -31,11 +31,20 @@ class StocksController < ApplicationController
     else
       render :new
     end
-    
   end
 
   def update
-    #code
+    begin
+      @stock = Stock.find(params[:id])
+      @stock.update_attributes(stock_params)
+      if @stock.errors.empty?
+        redirect_to stock_path(@stock)
+      else
+        render :edit
+      end
+    rescue ActiveRecord::RecordNotFound
+      render text: 'No such stock', status: 404
+    end
   end
 
   def destroy
@@ -45,9 +54,9 @@ class StocksController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       render text: 'No such stock', status: 404
     end
-    
+
   end
-  
+
   private
     def stock_params
       params.require(:stock).permit(:company, :symbol, :current_price)
