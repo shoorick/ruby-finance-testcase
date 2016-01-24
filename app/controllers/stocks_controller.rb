@@ -1,15 +1,12 @@
 class StocksController < ApplicationController
 
+  before_filter :find_stock, only: [:show, :edit, :update, :destroy]
+
   def index
     @stocks = Stock.all
   end
 
   def show
-    begin
-      @stock = Stock.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render text: 'No such stock', status: 404
-    end
   end
 
   def new
@@ -17,11 +14,6 @@ class StocksController < ApplicationController
   end
 
   def edit
-    begin
-      @stock = Stock.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render text: 'No such stock', status: 404
-    end
   end
 
   def create
@@ -34,32 +26,29 @@ class StocksController < ApplicationController
   end
 
   def update
-    begin
-      @stock = Stock.find(params[:id])
-      @stock.update_attributes(stock_params)
-      if @stock.errors.empty?
-        redirect_to stock_path(@stock)
-      else
-        render :edit
-      end
-    rescue ActiveRecord::RecordNotFound
-      render text: 'No such stock', status: 404
+    @stock.update_attributes(stock_params)
+    if @stock.errors.empty?
+      redirect_to stock_path(@stock)
+    else
+      render :edit
     end
   end
 
   def destroy
-    begin
-      @stock = Stock.find(params[:id]).destroy
-      redirect_to action: 'index'
-    rescue ActiveRecord::RecordNotFound
-      render text: 'No such stock', status: 404
-    end
-
+    redirect_to action: 'index'
   end
 
   private
     def stock_params
       params.require(:stock).permit(:company, :symbol, :current_price)
+    end
+    
+    def find_stock
+      begin
+        @stock = Stock.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        render text: 'No such stock', status: 404
+      end
     end
 
 end
