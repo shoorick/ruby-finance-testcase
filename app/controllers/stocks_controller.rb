@@ -17,7 +17,7 @@ class StocksController < ApplicationController
   end
 
   def create
-    #code
+    render text: 'Stock created'
   end
 
   def update
