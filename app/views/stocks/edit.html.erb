@@ -1,0 +1,10 @@
+<h1>Edit stock</h1>
+<%= form_for @stock  do |f| %>
+  <label for="company">Company
+    <%= f.text_field :company %></label>
+  <label for="symbol">Symbol
+    <%= f.text_field :symbol %></label>
+  <label for="current_price">Current price
+    <%= f.text_field :current_price %></label>
+  <%= f.submit 'Save' %>
+<% end %>

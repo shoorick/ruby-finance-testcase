@@ -17,7 +17,11 @@ class StocksController < ApplicationController
   end
 
   def edit
-    #code
+    begin
+      @stock = Stock.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render text: 'No such stock', status: 404
+    end
   end
 
   def create
