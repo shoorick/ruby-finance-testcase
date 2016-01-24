@@ -1,7 +1,10 @@
 <h1>New stock</h1>
-<form action="/stocks" method="POST">
-  <label for="company">Company <input type="text" name="company"></label>
-  <label for="symbol">Symbol <input type="text" name="symbol"></label>
-  <label for="current_price">Current price <input type="text" name="current_price"></label>
-  <input type="submit" value="Create">
-</form>
+<%= form_for Stock.new do |f| %>
+  <label for="company">Company
+    <%= f.text_field :company %></label>
+  <label for="symbol">Symbol
+    <%= f.text_field :symbol %></label>
+  <label for="current_price">Current price
+    <%= f.text_field :current_price %></label>
+  <%= f.submit 'Create' %>
+<% end %>
