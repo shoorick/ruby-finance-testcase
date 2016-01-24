@@ -1,3 +1,7 @@
+<nav>
+  <%= link_to 'Home',   '/' %> /
+  <%= link_to 'Stocks', stocks_path %>
+</nav>
 <h1><%= @stock.company %> (<%= @stock.symbol %>)</h1>
 <h2>Prices</h2>
 <p>Current: <%= @stock.current_price %></p>
